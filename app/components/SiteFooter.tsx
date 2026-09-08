@@ -1,3 +1,5 @@
+import ArrowIcon from "./ArrowIcon";
+
 type SiteFooterProps = {
   active?: "about" | "brands" | "contact";
 };
@@ -11,8 +13,11 @@ export default function SiteFooter({ active }: SiteFooterProps) {
           <a href="/brands" aria-current={active === "brands" ? "page" : undefined}>Brands</a>
           <a href="/contact" aria-current={active === "contact" ? "page" : undefined}>Contact</a>
         </nav>
-        <p>Copyright © 2026 WBSQ Holdings Pte Ltd. All rights reserved.</p>
-        <a href="#top" aria-label="Back to top">Back to top ↑</a>
+        <p>
+          <span>Copyright © 2026 WBSQ Holdings Pte Ltd.</span>{" "}
+          <span className="siteFooterRights">All rights reserved.</span>
+        </p>
+        <a href="#top" aria-label="Back to top">Back to top <ArrowIcon direction="up" /></a>
       </div>
     </footer>
   );
