@@ -222,6 +222,8 @@ h1 { max-width: 1200px; margin: 0; font-size: clamp(54px, 8.6vw, 138px); font-we
 .siteFooterInner a { transition: color .2s ease, opacity .2s ease; }
 .siteFooterInner a:hover { color: var(--white); }
 .siteFooterInner a[aria-current="page"] { color: var(--white); }
+.arrowIcon { width: 1.15em; height: 1.15em; display: inline-block; flex: 0 0 auto; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.14em; }
+.siteFooterInner > a { display: inline-flex; align-items: center; gap: 7px; }
 
 @keyframes heroIn { from { opacity: .6; transform: scale(1.08); } to { opacity: 1; transform: scale(1.025); } }
 @keyframes riseIn { from { opacity: 0; transform: translateY(42px); } to { opacity: 1; transform: translateY(0); } }
@@ -322,6 +324,7 @@ h1 { max-width: 1200px; margin: 0; font-size: clamp(54px, 8.6vw, 138px); font-we
   .siteFooter { padding: 28px 4vw 24px; }
   .siteFooterInner { min-height: 190px; grid-template-columns: 1fr; gap: 22px; padding: 28px 0 10px; text-align: center; }
   .siteFooterInner p { white-space: nowrap; font-size: clamp(7.5px, 2.25vw, 9px); letter-spacing: .05em; }
+  .siteFooterRights { display: block; margin-top: 7px; }
   .siteFooterInner nav, .siteFooterInner > a { justify-self: center; }
 }
 
