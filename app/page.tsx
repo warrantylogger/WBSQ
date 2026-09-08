@@ -7,6 +7,7 @@ import type { LogoItem } from "../components/LogoLoop";
 import ScrollGlobe from "../components/ScrollGlobe";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import ArrowIcon from "./components/ArrowIcon";
 
 const clientLogos: LogoItem[] = [
   { src: "/client-logos/client-01.webp", alt: "Nanyang Technological University" },
@@ -324,7 +325,7 @@ export default function Home() {
               Southeast Asia.
             </p>
             <a className="circleLink" href="#about" aria-label="Discover WBSQ">
-              <span>↓</span>
+              <span><ArrowIcon direction="down" /></span>
             </a>
           </div>
         </div>
@@ -413,7 +414,7 @@ export default function Home() {
           </div>
           <a className="sectorDirectoryLink" href="/brands">
             <span>Explore all brands</span>
-            <i aria-hidden="true">↗</i>
+            <i aria-hidden="true"><ArrowIcon direction="external" /></i>
           </a>
         </section>
       </div>
@@ -458,7 +459,7 @@ export default function Home() {
           </ol>
           <a className="valuesAboutLink" href="/about">
             <span>About us</span>
-            <i aria-hidden="true">↗</i>
+            <i aria-hidden="true"><ArrowIcon direction="external" /></i>
           </a>
         </div>
         <div className="valuesImage">
