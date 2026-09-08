@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import TopologyField from "../../components/originkit/ui/topology-field";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
+import ArrowIcon from "../components/ArrowIcon";
 import styles from "./about.module.css";
 
 const milestones = [
@@ -107,7 +108,7 @@ export default function AboutPage() {
                 sphere={{ offsetX: 0, tilt: 11, distance: 170 }}
                 style={{ minWidth: "100%", minHeight: "100%" }}
               />
-              <span className={styles.sphereLabel}>Kevin Ho <b aria-hidden="true">↗</b></span>
+              <span className={styles.sphereLabel}>Kevin Ho <b aria-hidden="true"><ArrowIcon direction="external" /></b></span>
             </a>
           </div>
         </section>
