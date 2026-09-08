@@ -3,6 +3,7 @@ import { brands, getBrandBySlug, getBrandLogo } from "../../app/brands/brand-dat
 import SiteFooter from "../../app/components/SiteFooter";
 import SiteHeader from "../../app/components/SiteHeader";
 import styles from "../../app/brands/brands.module.css";
+import ArrowIcon from "../../app/components/ArrowIcon";
 
 export default function BrandDetailPage({ slug }: { slug: string }) {
   const brand = getBrandBySlug(slug);
@@ -23,7 +24,7 @@ export default function BrandDetailPage({ slug }: { slug: string }) {
       <SiteHeader theme="light" active="brands" />
 
       <main className={styles.detailMain}>
-        <a className={styles.detailBack} href="/brands"><span aria-hidden="true">←</span> All brands</a>
+        <a className={styles.detailBack} href="/brands"><ArrowIcon direction="left" /> All brands</a>
 
         <section className={styles.detailHero}>
           <div className={styles.detailIdentity}>
@@ -61,7 +62,7 @@ export default function BrandDetailPage({ slug }: { slug: string }) {
               <div className={styles.websiteLinks}>
                 {websiteLinks.map((website) => (
                   <a className={styles.websiteLink} href={website.url} target="_blank" rel="noreferrer" key={website.url}>
-                    {website.label} <span aria-hidden="true">↗</span>
+                    {website.label} <ArrowIcon direction="external" />
                   </a>
                 ))}
               </div>
@@ -71,11 +72,11 @@ export default function BrandDetailPage({ slug }: { slug: string }) {
 
         <nav className={styles.detailPager} aria-label="Browse brands">
           <a href={`/brands/${previous.slug}`}>
-            <span>← Previous brand</span>
+            <span><ArrowIcon direction="left" /> Previous brand</span>
             <strong>{previous.name}</strong>
           </a>
           <a href={`/brands/${next.slug}`}>
-            <span>Next brand →</span>
+            <span>Next brand <ArrowIcon direction="right" /></span>
             <strong>{next.name}</strong>
           </a>
         </nav>
