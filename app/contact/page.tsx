@@ -1,14 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect } from "react";
 import type { CSSProperties } from "react";
+import SiteFooter from "../components/SiteFooter";
+import SiteHeader from "../components/SiteHeader";
 import styles from "./contact.module.css";
 
 const details = [
-  { label: "Office", content: <><span>32 Hongkong Street</span><span>Singapore 059671</span></> },
-  { label: "Phone", content: <a href="tel:+6580131800">+65 8013 1800</a> },
-  { label: "Hours", content: <><span>Monday – Friday</span><span>9.00am – 6.00pm SGT</span></> },
+  { label: "Singapore", content: <><span>32 Hongkong Street</span><span>Singapore 059671</span></> },
+  {
+    label: "Malaysia",
+    content: (
+      <>
+        <span>A1-6, 1st Floor, KL Industrial Park,</span>
+        <span>653, Batu 5, Jalan Kelang Lama,</span>
+        <span>58200 KL</span>
+      </>
+    ),
+  },
+  { label: "Email", content: <a href="mailto:support@wbsq.com">support@wbsq.com</a> },
 ];
 
 export default function ContactPage() {
@@ -28,26 +38,8 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <a href="/" aria-label="WBSQ home">
-          <Image src="/wbsq-wordmark.png" alt="WBSQ" width={424} height={112} priority />
-        </a>
-        <nav className={styles.desktopNav} aria-label="Primary navigation">
-          <a href="/about">About</a>
-          <a href="/brands">Brands</a>
-          <a className={styles.active} href="/contact">Contact</a>
-        </nav>
-        <span className={styles.headerIndex}>SG / 01°17&apos;N</span>
-        <details className={styles.mobileNav}>
-          <summary aria-label="Open navigation"><i /><i /></summary>
-          <nav aria-label="Mobile navigation">
-            <a href="/about">About</a>
-            <a href="/brands">Brands</a>
-            <a className={styles.active} href="/contact">Contact</a>
-          </nav>
-        </details>
-      </header>
+    <div className={styles.page} id="top">
+      <SiteHeader theme="light" active="contact" />
 
       <main>
         <section className={styles.intro}>
@@ -56,7 +48,7 @@ export default function ContactPage() {
             <h1>Where to find us</h1>
           </div>
           <p className={`${styles.introCopy} ${styles.fadeUp}`} data-motion style={{ "--delay": "140ms" } as CSSProperties}>
-            Our group office sits by the Singapore River, a few minutes from Clarke Quay MRT. Drop by or give us a call.
+            Our group offices connect Singapore and Kuala Lumpur. Drop by or send us an email.
           </p>
         </section>
 
@@ -74,8 +66,8 @@ export default function ContactPage() {
           </div>
 
           <div className={`${styles.office} ${styles.fadeLeft}`} data-motion style={{ "--delay": "100ms" } as CSSProperties}>
-            <p className={styles.officeKicker}>Group office</p>
-            <h2>Singapore</h2>
+            <p className={styles.officeKicker}>Group offices</p>
+            <h2>Singapore &amp; Malaysia</h2>
             <div className={styles.detailList}>
               {details.map((detail, index) => (
                 <div className={styles.detailRow} key={detail.label}>
@@ -84,24 +76,11 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
-            <a className={styles.callLink} href="tel:+6580131800">
-              <span>Call the office</span><span aria-hidden="true">↗</span>
-            </a>
           </div>
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <p className={styles.footerName}>WBSQ Holdings Pte Ltd</p>
-          <nav aria-label="Footer navigation">
-            <a href="/about">About</a>
-            <a href="/brands">Brands</a>
-            <a className={styles.active} href="/contact">Contact</a>
-            <span>© 2026</span>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter active="contact" />
     </div>
   );
 }

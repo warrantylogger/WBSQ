@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import SiteFooter from "../components/SiteFooter";
+import SiteHeader from "../components/SiteHeader";
 import styles from "./brands.module.css";
+import { brands, getBrandLogo } from "./brand-data";
 
 const filters = [
   "All",
@@ -13,21 +16,6 @@ const filters = [
   "Logistics",
   "Wellness & education",
   "Marketing services",
-];
-
-const brands = [
-  { initials: "AC", name: "The Appliances Co.", category: "Home appliances", description: "Multi-brand retail and distribution of premium kitchen and living appliances.", location: "Singapore, Malaysia" },
-  { initials: "HH", name: "Hobs and Hoods", category: "Home appliances", description: "Specialist cooking hardware — hobs, hoods, ovens — with in-house installation.", location: "Singapore" },
-  { initials: "AL", name: "Aquara Living", category: "Home appliances", description: "Water filtration and indoor air systems for homes and light commercial spaces.", location: "Singapore, Indonesia" },
-  { initials: "KR", name: "KeenOn Robotics", category: "Tech & robotics", description: "Service robotics for F&B, hospitality and healthcare floor operations.", location: "Singapore, Malaysia, Thailand" },
-  { initials: "NS", name: "Nexal Systems", category: "Tech & robotics", description: "Automation integration, IoT monitoring and after-sales technical support.", location: "Regional" },
-  { initials: "BB", name: "Bluemark Build", category: "Construction", description: "Fit-out and renovation contracting for residential and retail projects.", location: "Singapore" },
-  { initials: "CI", name: "Corestone Interiors", category: "Construction", description: "Design-and-build interiors with in-house joinery and project management.", location: "Singapore, Vietnam" },
-  { initials: "SL", name: "Swiftlane Logistics", category: "Logistics", description: "Last-mile delivery and white-glove installation for bulky goods.", location: "Singapore, Malaysia" },
-  { initials: "PF", name: "Portside Freight", category: "Logistics", description: "Regional freight forwarding, customs clearance and bonded warehousing.", location: "ASEAN" },
-  { initials: "VS", name: "Vitalis Studio", category: "Wellness & education", description: "Recovery and wellness studios with equipment retail and clinical partners.", location: "Singapore" },
-  { initials: "BP", name: "Bright Path Learning", category: "Wellness & education", description: "Enrichment and vocational programmes for students and working adults.", location: "Singapore, Malaysia" },
-  { initials: "SS", name: "Sixth Signal", category: "Marketing services", description: "Performance marketing, content and CRM for the group’s consumer brands.", location: "Regional" },
 ];
 
 type Phase = "idle" | "out" | "prepare" | "in";
@@ -41,7 +29,7 @@ export default function BrandsPage() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const visibleBrands = useMemo(
-    () => displayedFilter === "All" ? brands : brands.filter((brand) => brand.category === displayedFilter),
+    () => displayedFilter === "All" ? brands : brands.filter((brand) => brand.categories.includes(displayedFilter)),
     [displayedFilter],
   );
 
@@ -62,6 +50,18 @@ export default function BrandsPage() {
 
   useEffect(() => () => {
     if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
+
+  useEffect(() => {
+    const requestedFilter = new URLSearchParams(window.location.search).get("sector");
+    if (!requestedFilter || !filters.includes(requestedFilter)) return;
+
+    setActiveFilter(requestedFilter);
+    setDisplayedFilter(requestedFilter);
+    const frame = requestAnimationFrame(() => {
+      document.getElementById("brand-directory")?.scrollIntoView({ block: "start" });
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const selectFilter = (filter: string) => {
@@ -97,31 +97,13 @@ export default function BrandsPage() {
   const phaseClass = phase === "out" ? styles.gridOut : phase === "prepare" ? styles.gridPrepare : phase === "in" ? styles.gridIn : "";
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <a href="/" aria-label="WBSQ home">
-          <Image src="/wbsq-wordmark.png" alt="WBSQ" width={424} height={112} priority />
-        </a>
-        <nav className={styles.desktopNav} aria-label="Primary navigation">
-          <a href="/about">About</a>
-          <a className={styles.active} href="/brands">Brands</a>
-          <a href="/contact">Contact</a>
-        </nav>
-        <span className={styles.headerIndex}>SG / 2012</span>
-        <details className={styles.mobileNav}>
-          <summary aria-label="Open navigation"><i /><i /></summary>
-          <nav aria-label="Mobile navigation">
-            <a href="/about">About</a>
-            <a href="/brands">Brands</a>
-            <a href="/contact">Contact</a>
-          </nav>
-        </details>
-      </header>
+    <div className={styles.page} id="top">
+      <SiteHeader theme="light" active="brands" />
 
       <main>
         <section className={styles.intro}>
           <p className={`${styles.eyebrow} ${styles.fadeUp}`} data-motion>Brand directory</p>
-          <h1 className={styles.fadeUp} data-motion style={{ "--delay": "110ms" } as CSSProperties}>Twelve brands, each with its own customers and craft.</h1>
+          <h1 className={styles.fadeUp} data-motion style={{ "--delay": "110ms" } as CSSProperties}>Twenty-three brands, each with its own customers and craft.</h1>
           <div className={`${styles.filters} ${styles.fadeUp}`} data-motion style={{ "--delay": "220ms" } as CSSProperties} aria-label="Filter brands by category">
             {filters.map((filter) => (
               <button
@@ -138,7 +120,7 @@ export default function BrandsPage() {
           </div>
         </section>
 
-        <section className={`${styles.directory} ${styles.fadeUp}`} data-motion aria-live="polite">
+        <section id="brand-directory" className={styles.directory} aria-live="polite">
           <div className={styles.gridViewport} ref={viewportRef}>
             <div className={`${styles.grid} ${phaseClass}`} ref={gridRef}>
               {visibleBrands.map((brand, index) => (
@@ -147,11 +129,30 @@ export default function BrandsPage() {
                   style={{ "--card-delay": `${Math.floor(index / 3) * 105 + (index % 3) * 35}ms` } as CSSProperties}
                   key={brand.name}
                 >
-                  <div className={styles.badge}>{brand.initials}</div>
-                  <h2>{brand.name}</h2>
-                  <p className={styles.category}>{brand.category}</p>
-                  <p className={styles.description}>{brand.description}</p>
-                  <p className={styles.location}>{brand.location}</p>
+                  <div className={styles.cardTop}>
+                    <div className={styles.logoBadge} data-brand-logo={brand.largeLogo ? brand.slug : undefined}>
+                      {brand.logoPending ? (
+                        <span className={styles.logoPlaceholder}>{brand.name}</span>
+                      ) : (
+                        <Image
+                          src={getBrandLogo(brand.slug)}
+                          alt={`${brand.name} logo`}
+                          width={320}
+                          height={180}
+                        />
+                      )}
+                    </div>
+                    <p className={styles.category}>{brand.categories.join(" · ")}</p>
+                  </div>
+                  <h2><a href={`/brands/${brand.slug}`}>{brand.name}</a></h2>
+                  <p className={styles.description}>{brand.summary}</p>
+                  <div className={styles.cardFooter}>
+                    <p className={styles.location}>{brand.location}</p>
+                    <a className={styles.detailLink} href={`/brands/${brand.slug}`} aria-label={`View ${brand.name} brand description`}>
+                      <span>View brand</span>
+                      <i aria-hidden="true">↗</i>
+                    </a>
+                  </div>
                 </article>
               ))}
             </div>
@@ -159,17 +160,7 @@ export default function BrandsPage() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <p className={styles.footerName}>WBSQ Holdings Pte Ltd</p>
-          <nav aria-label="Footer navigation">
-            <a href="/about">About</a>
-            <a className={styles.active} href="/brands">Brands</a>
-            <a href="/contact">Contact</a>
-            <span>© 2026</span>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter active="brands" />
     </div>
   );
 }
