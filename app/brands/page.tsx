@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
+import ArrowIcon from "../components/ArrowIcon";
 import styles from "./brands.module.css";
 import { brands, getBrandLogo } from "./brand-data";
 
@@ -150,7 +151,7 @@ export default function BrandsPage() {
                     <p className={styles.location}>{brand.location}</p>
                     <a className={styles.detailLink} href={`/brands/${brand.slug}`} aria-label={`View ${brand.name} brand description`}>
                       <span>View brand</span>
-                      <i aria-hidden="true">↗</i>
+                      <i aria-hidden="true"><ArrowIcon direction="external" /></i>
                     </a>
                   </div>
                 </article>
