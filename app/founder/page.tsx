@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import type { CSSProperties } from "react";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
+import ArrowIcon from "../components/ArrowIcon";
 import styles from "./founder.module.css";
 
 const biography = [
@@ -53,8 +54,8 @@ export default function FounderPage() {
             <p className={styles.role}>Managing Director</p>
             <p className={styles.intro}>An entrepreneur driven by innovation, practical technology and the possibilities created when curiosity becomes action.</p>
             <div className={styles.profileLinks}>
-              <a href="https://www.linkedin.com/in/hokevin/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-              <a href="https://api.whatsapp.com/send?phone=6589789318" target="_blank" rel="noreferrer">Mobile <span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/hokevin/" target="_blank" rel="noreferrer">LinkedIn <ArrowIcon direction="external" /></a>
+              <a href="https://api.whatsapp.com/send?phone=6589789318" target="_blank" rel="noreferrer">Mobile <ArrowIcon direction="external" /></a>
             </div>
           </div>
         </section>
@@ -85,7 +86,7 @@ export default function FounderPage() {
               “In essence, I am an entrepreneur who is not just passionate about technology but also about the positive impact it can have on our lives and the world around us. My ability to blend creativity with strategic thinking has been key to my success, and I remain dedicated to driving innovation in the digital and eCommerce spaces.”
             </blockquote>
             <a className={`${styles.backLink} ${styles.fadeUp}`} data-founder-motion style={{ "--delay": "180ms" } as CSSProperties} href="/about">
-              <span aria-hidden="true">←</span> Return to About
+              <ArrowIcon direction="left" /> Return to About
             </a>
           </div>
         </section>
