@@ -1,5 +1,5 @@
 type ArrowIconProps = {
-  direction: "left" | "right" | "up" | "external";
+  direction: "left" | "right" | "up" | "down" | "external";
   className?: string;
 };
 
@@ -18,6 +18,7 @@ export default function ArrowIcon({ direction, className = "" }: ArrowIconProps)
     left: "M13 8H3m4-4L3 8l4 4",
     right: "M3 8h10M9 4l4 4-4 4",
     up: "M8 13V3M4 7l4-4 4 4",
+    down: "M8 3v10M4 9l4 4 4-4",
   };
 
   return (
