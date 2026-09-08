@@ -5,7 +5,10 @@ import AboutPage from "../../app/about/page";
 import BrandsPage from "../../app/brands/page";
 import ContactPage from "../../app/contact/page";
 import FounderPage from "../../app/founder/page";
+import { getBrandBySlug } from "../../app/brands/brand-data";
 import CustomCursor from "../../app/components/CustomCursor";
+import SiteLoader from "../../app/components/SiteLoader";
+import BrandDetailPage from "./BrandDetailPage";
 import "../../app/globals.css";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -18,11 +21,27 @@ const pageTitles: Record<string, string> = {
   "/founder": "Kevin Ho — Founder of WBSQ Holdings",
 };
 
+function brandSlugFromRoute(route: string) {
+  const match = route.match(/^\/brands\/([^/]+)$/);
+  return match?.[1] ?? null;
+}
+
+function isKnownRoute(route: string) {
+  const slug = brandSlugFromRoute(route);
+  return route in pageTitles || Boolean(slug && getBrandBySlug(slug));
+}
+
+function titleForRoute(route: string) {
+  const slug = brandSlugFromRoute(route);
+  const brand = slug ? getBrandBySlug(slug) : undefined;
+  return brand ? `${brand.name} — WBSQ Holdings` : pageTitles[route] ?? "WBSQ Holdings";
+}
+
 function currentRoute() {
   let pathname = window.location.pathname;
   if (pathname.startsWith(basePath)) pathname = pathname.slice(basePath.length);
   pathname = `/${pathname}`.replace(/\/{2,}/g, "/").replace(/\/$/, "") || "/";
-  return pathname in pageTitles ? pathname : "/";
+  return isKnownRoute(pathname) ? pathname : "/";
 }
 
 function routeUrl(route: string) {
@@ -36,7 +55,7 @@ function GitHubPagesApp() {
     const updateRoute = () => {
       const nextRoute = currentRoute();
       setRoute(nextRoute);
-      document.title = pageTitles[nextRoute];
+      document.title = titleForRoute(nextRoute);
     };
 
     const handleClick = (event: MouseEvent) => {
@@ -46,7 +65,7 @@ function GitHubPagesApp() {
       if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
 
       const href = anchor.getAttribute("href");
-      if (!href || !(href in pageTitles)) return;
+      if (!href || !isKnownRoute(href)) return;
 
       event.preventDefault();
       window.history.pushState({}, "", routeUrl(href));
@@ -67,11 +86,14 @@ function GitHubPagesApp() {
   if (route === "/brands") return <BrandsPage />;
   if (route === "/contact") return <ContactPage />;
   if (route === "/founder") return <FounderPage />;
+  const brandSlug = brandSlugFromRoute(route);
+  if (brandSlug) return <BrandDetailPage slug={brandSlug} />;
   return <Home />;
 }
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <SiteLoader />
     <CustomCursor />
     <GitHubPagesApp />
   </StrictMode>,
