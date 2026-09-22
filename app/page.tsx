@@ -7,7 +7,6 @@ import type { LogoItem } from "../components/LogoLoop";
 import ScrollGlobe from "../components/ScrollGlobe";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
-import ArrowIcon from "./components/ArrowIcon";
 
 const clientLogos: LogoItem[] = [
   { src: "/client-logos/client-01.webp", alt: "Nanyang Technological University" },
@@ -70,7 +69,7 @@ const sectors = [
     name: "Construction",
     filter: "Construction",
     count: "3 brands",
-    brands: ["Boh Beh Zao Construction", "Hightech", "Waterproofing"],
+    brands: ["Boh Beh Zao Construction", "Hi-Tech", "Waterproofing"],
   },
   {
     number: "04",
@@ -325,7 +324,7 @@ export default function Home() {
               Southeast Asia.
             </p>
             <a className="circleLink" href="#about" aria-label="Discover WBSQ">
-              <span><ArrowIcon direction="down" /></span>
+              <span>↓</span>
             </a>
           </div>
         </div>
@@ -414,7 +413,7 @@ export default function Home() {
           </div>
           <a className="sectorDirectoryLink" href="/brands">
             <span>Explore all brands</span>
-            <i aria-hidden="true"><ArrowIcon direction="external" /></i>
+            <i aria-hidden="true">↗</i>
           </a>
         </section>
       </div>
@@ -459,7 +458,7 @@ export default function Home() {
           </ol>
           <a className="valuesAboutLink" href="/about">
             <span>About us</span>
-            <i aria-hidden="true"><ArrowIcon direction="external" /></i>
+            <i aria-hidden="true">↗</i>
           </a>
         </div>
         <div className="valuesImage">
