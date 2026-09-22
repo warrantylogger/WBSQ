@@ -98,3 +98,4 @@ createRoot(document.getElementById("root")!).render(
     <GitHubPagesApp />
   </StrictMode>,
 );
+
