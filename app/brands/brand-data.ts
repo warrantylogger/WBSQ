@@ -190,12 +190,12 @@ export const brands: Brand[] = [
   },
   {
     initials: "HT",
-    name: "Hightech",
+    name: "Hi-Tech",
     slug: "hightech",
     categories: ["Construction"],
     summary: "Technical building solutions for modern commercial and residential environments.",
     description:
-      "HIGHTECH handles construction and renovation projects for homes, offices, and industrial sites, built around precise planning and modern equipment rather than guesswork on site. The team runs each project through detailed measurement and planning tools before work starts, cutting down on rework and delays once the crew moves in. Structural work, fit-outs, and technical installations all fall under one contract, so a client works with one team rather than coordinating several trades. HIGHTECH serves homeowners, businesses, and developers who want a construction partner running on process as much as manpower.",
+      "Hi-Tech handles construction and renovation projects for homes, offices, and industrial sites, built around precise planning and modern equipment rather than guesswork on site. The team runs each project through detailed measurement and planning tools before work starts, cutting down on rework and delays once the crew moves in. Structural work, fit-outs, and technical installations all fall under one contract, so a client works with one team rather than coordinating several trades. Hi-Tech serves homeowners, businesses, and developers who want a construction partner running on process as much as manpower.",
     location: "Singapore",
     website: "https://hitechencsg.com/",
   },
