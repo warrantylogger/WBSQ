@@ -1,0 +1,13 @@
+.page { min-height: 100vh; background: #fff; color: #000; }
+.main { margin-inline: 4vw; padding-bottom: clamp(80px, 10vw, 140px); }
+.intro { padding: clamp(68px, 9vw, 128px) 0 48px; border-bottom: 1px solid #d9d9d9; }
+.eyebrow { margin: 0 0 22px; font-size: 10px; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
+.intro h1 { margin: 0; font-size: clamp(48px, 6.2vw, 88px); font-weight: 500; letter-spacing: -.058em; line-height: 1.02; }
+.updated { margin: 28px 0 0; color: #666; font-size: 13px; line-height: 1.6; }
+.content { max-width: 780px; margin: 48px auto 0; font-size: 16px; line-height: 1.8; color: #444; overflow-wrap: anywhere; }
+.content p { margin: 0 0 20px; }
+.content section { margin-top: 42px; }
+.content h2 { margin: 0 0 18px; color: #000; font-size: clamp(24px, 2.7vw, 32px); font-weight: 500; letter-spacing: -.035em; line-height: 1.2; }
+.content ul { margin: 0 0 24px; padding-left: 24px; }
+.content li { padding-left: 4px; margin-bottom: 8px; }
+@media (max-width: 760px) { .content { margin-top: 32px; font-size: 15px; line-height: 1.75; } .intro { padding-bottom: 32px; } }

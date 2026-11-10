@@ -21,7 +21,7 @@ export default defineConfig({
           path.join(outputDirectory, "index.html"),
           path.join(outputDirectory, "404.html"),
         );
-        for (const route of ["about", "brands", "contact", "founder"]) {
+        for (const route of ["about", "brands", "contact", "founder", "privacy-policy"]) {
           const routeDirectory = path.join(outputDirectory, route);
           await mkdir(routeDirectory, { recursive: true });
           await copyFile(

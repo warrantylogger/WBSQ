@@ -4,6 +4,7 @@ import Home from "../../app/page";
 import AboutPage from "../../app/about/page";
 import BrandsPage from "../../app/brands/page";
 import ContactPage from "../../app/contact/page";
+import PrivacyPolicyPage from "../../app/privacy-policy/page";
 import FounderPage from "../../app/founder/page";
 import { getBrandBySlug } from "../../app/brands/brand-data";
 import CustomCursor from "../../app/components/CustomCursor";
@@ -17,6 +18,7 @@ const pageTitles: Record<string, string> = {
   "/": "WBSQ Holdings",
   "/about": "About — WBSQ Holdings",
   "/brands": "Brands — WBSQ Holdings",
+  "/privacy-policy": "Privacy Policy — WBSQ Holdings",
   "/contact": "Contact — WBSQ Holdings",
   "/founder": "Kevin Ho — Founder of WBSQ Holdings",
 };
@@ -84,6 +86,7 @@ function GitHubPagesApp() {
 
   if (route === "/about") return <AboutPage />;
   if (route === "/brands") return <BrandsPage />;
+  if (route === "/privacy-policy") return <PrivacyPolicyPage />;
   if (route === "/contact") return <ContactPage />;
   if (route === "/founder") return <FounderPage />;
   const brandSlug = brandSlugFromRoute(route);
