@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
 <section>
 <h2>Contact Us</h2>
 <p>For questions, requests, or complaints concerning this Privacy Policy or our handling of your personal data, please contact:</p>
-<p>WBSQ - WBSQ HOLDINGS PTE. LTD.<br />Privacy Contact / Data Protection Officer</p>
+<p>WBSQ HOLDINGS PTE. LTD.<br />Privacy Contact / Data Protection Officer</p>
 </section>
         </article>
       </main>
