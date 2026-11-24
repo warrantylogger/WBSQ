@@ -42,6 +42,7 @@ const clientLogos: LogoItem[] = [
   { src: "/client-logos/singapore-airlines.webp", alt: "Singapore Airlines" },
   { src: "/client-logos/dbs.webp", alt: "DBS" },
   { src: "/client-logos/raffles-singapore.webp", alt: "Raffles Singapore" },
+  { src: "/client-logos/vingardevalise.svg", alt: "VinGardeValise" },
 ];
 
 const clientLogoRows = [
