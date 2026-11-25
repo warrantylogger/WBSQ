@@ -43,6 +43,7 @@ const clientLogos: LogoItem[] = [
   { src: "/client-logos/dbs.webp", alt: "DBS" },
   { src: "/client-logos/raffles-singapore.webp", alt: "Raffles Singapore" },
   { src: "/client-logos/vingardevalise.svg", alt: "VinGardeValise" },
+  { src: "/client-logos/far-east-organization.png", alt: "Far East Organization" },
 ];
 
 const clientLogoRows = [
